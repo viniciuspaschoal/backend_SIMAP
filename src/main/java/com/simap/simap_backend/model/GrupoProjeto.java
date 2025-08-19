@@ -1,0 +1,70 @@
+package com.simap.simap_backend.model;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import java.util.Objects;
+
+@Entity
+@Table(name = "grupo_projeto")
+public class GrupoProjeto {
+
+    @Id
+    @Column(name = "cod_grupoprojeto", length = 7)
+    private String codGrupoProjeto;
+
+    @Column(name = "grupoprojeto", length = 10, nullable = false)
+    private String grupoProjeto;
+
+    @Column(name = "descricao_grupoprojeto", columnDefinition = "TEXT")
+    private String descricaoGrupoProjeto;
+
+    //ToDo
+    // Será relacionado com ProjetoRecomposicao
+
+
+    public GrupoProjeto(String codGrupoProjeto, String grupoProjeto, String descricaoGrupoProjeto) {
+        this.codGrupoProjeto = codGrupoProjeto;
+        this.grupoProjeto = grupoProjeto;
+        this.descricaoGrupoProjeto = descricaoGrupoProjeto;
+    }
+
+    public String getCodGrupoProjeto() {
+        return codGrupoProjeto;
+    }
+
+    public void setCodGrupoProjeto(String codGrupoProjeto) {
+        this.codGrupoProjeto = codGrupoProjeto;
+    }
+
+    public String getGrupoProjeto() {
+        return grupoProjeto;
+    }
+
+    public void setGrupoProjeto(String grupoProjeto) {
+        this.grupoProjeto = grupoProjeto;
+    }
+
+    public String getDescricaoGrupoProjeto() {
+        return descricaoGrupoProjeto;
+    }
+
+    public void setDescricaoGrupoProjeto(String descricaoGrupoProjeto) {
+        this.descricaoGrupoProjeto = descricaoGrupoProjeto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        GrupoProjeto that = (GrupoProjeto) o;
+        return Objects.equals(codGrupoProjeto, that.codGrupoProjeto) && Objects.equals(grupoProjeto, that.grupoProjeto) && Objects.equals(descricaoGrupoProjeto, that.descricaoGrupoProjeto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(codGrupoProjeto, grupoProjeto, descricaoGrupoProjeto);
+    }
+}
