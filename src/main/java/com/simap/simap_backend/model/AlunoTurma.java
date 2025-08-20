@@ -2,6 +2,8 @@ package com.simap.simap_backend.model;
 
 import jakarta.persistence.*;
 
+import java.util.Objects;
+
 @Entity
 @Table(name = "aluno_turma")
 public class AlunoTurma {
@@ -49,5 +51,17 @@ public class AlunoTurma {
 
     public void setTurma(Turma turma) {
         this.turma = turma;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        AlunoTurma that = (AlunoTurma) o;
+        return Objects.equals(id, that.id) && Objects.equals(aluno, that.aluno) && Objects.equals(turma, that.turma);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, aluno, turma);
     }
 }
