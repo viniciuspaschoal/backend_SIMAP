@@ -1,5 +1,6 @@
 package com.simap.simap_backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
@@ -8,30 +9,33 @@ import java.util.Objects;
 @Embeddable
 public class FrequenciaProjetoId implements Serializable {
 
-    private Long codAluno;
-    private Long codProjeto;
+    @Column(name = "cod_aluno", length = 7)
+    private String codAluno;
+
+    @Column(name = "cod_dataprojeto", length = 15)
+    private String codDataProjeto;
 
     public FrequenciaProjetoId() {}
 
-    public FrequenciaProjetoId(Long codAluno, Long codProjeto) {
+    public FrequenciaProjetoId(String codAluno, String codDataProjeto) {
         this.codAluno = codAluno;
-        this.codProjeto = codProjeto;
+        this.codDataProjeto = codDataProjeto;
     }
 
-    public Long getCodAluno() {
+    public String getCodAluno() {
         return codAluno;
     }
 
-    public void setCodAluno(Long codAluno) {
+    public void setCodAluno(String codAluno) {
         this.codAluno = codAluno;
     }
 
-    public Long getCodProjeto() {
-        return codProjeto;
+    public String getCodDataProjeto() {
+        return codDataProjeto;
     }
 
-    public void setCodProjeto(Long codProjeto) {
-        this.codProjeto = codProjeto;
+    public void setCodDataProjeto(String codDataProjeto) {
+        this.codDataProjeto = codDataProjeto;
     }
 
     @Override
@@ -39,11 +43,11 @@ public class FrequenciaProjetoId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FrequenciaProjetoId that = (FrequenciaProjetoId) o;
-        return Objects.equals(codAluno, that.codAluno) && Objects.equals(codProjeto, that.codProjeto);
+        return Objects.equals(codAluno, that.codAluno) && Objects.equals(codDataProjeto, that.codDataProjeto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codAluno, codProjeto);
+        return Objects.hash(codAluno, codDataProjeto);
     }
 }

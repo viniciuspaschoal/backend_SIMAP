@@ -17,26 +17,20 @@ public class FrequenciaProjeto {
     private Aluno aluno;
 
     @ManyToOne
-    @MapsId("codProjeto")
-    @JoinColumn(name = "cod_projeto", nullable = false)
-    private ProjetoRecomposicao projeto;
+    @MapsId("codDataProjeto")
+    @JoinColumn(name = "cod_dataprojeto", nullable = false)
+    private DataProjeto dataProjeto;
 
-    @Column(name = "presencas")
-    private Integer presencas;
-
-    @Column(name = "faltas")
-    private Integer faltas;
+    @Column(name = "frequencia_p", nullable = false)
+    private Boolean presente;
 
     public FrequenciaProjeto() {}
 
-    public FrequenciaProjeto(FrequenciaProjetoId id, Aluno aluno,
-                             ProjetoRecomposicao projeto, Integer presencas,
-                             Integer faltas) {
-        this.id = id;
+    public FrequenciaProjeto(Aluno aluno, DataProjeto dataProjeto, Boolean presente) {
         this.aluno = aluno;
-        this.projeto = projeto;
-        this.presencas = presencas;
-        this.faltas = faltas;
+        this.dataProjeto = dataProjeto;
+        this.presente = presente;
+        this.id = new FrequenciaProjetoId(aluno.getCodAluno(), dataProjeto.getCodDataProjeto());
     }
 
     public FrequenciaProjetoId getId() {
@@ -55,28 +49,20 @@ public class FrequenciaProjeto {
         this.aluno = aluno;
     }
 
-    public ProjetoRecomposicao getProjeto() {
-        return projeto;
+    public DataProjeto getDataProjeto() {
+        return dataProjeto;
     }
 
-    public void setProjeto(ProjetoRecomposicao projeto) {
-        this.projeto = projeto;
+    public void setDataProjeto(DataProjeto dataProjeto) {
+        this.dataProjeto = dataProjeto;
     }
 
-    public Integer getPresencas() {
-        return presencas;
+    public Boolean getPresente() {
+        return presente;
     }
 
-    public void setPresencas(Integer presencas) {
-        this.presencas = presencas;
-    }
-
-    public Integer getFaltas() {
-        return faltas;
-    }
-
-    public void setFaltas(Integer faltas) {
-        this.faltas = faltas;
+    public void setPresente(Boolean presente) {
+        this.presente = presente;
     }
 
     @Override
@@ -84,11 +70,11 @@ public class FrequenciaProjeto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FrequenciaProjeto that = (FrequenciaProjeto) o;
-        return Objects.equals(id, that.id) && Objects.equals(aluno, that.aluno) && Objects.equals(projeto, that.projeto) && Objects.equals(presencas, that.presencas) && Objects.equals(faltas, that.faltas);
+        return Objects.equals(id, that.id) && Objects.equals(aluno, that.aluno) && Objects.equals(dataProjeto, that.dataProjeto) && Objects.equals(presente, that.presente);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, aluno, projeto, presencas, faltas);
+        return Objects.hash(id, aluno, dataProjeto, presente);
     }
 }
