@@ -4,25 +4,28 @@ import jakarta.persistence.*;
 
 import java.util.Objects;
 
+
 @Entity
 @Table(name = "resultado_diagnostico")
 public class ResultadoDiagnostico {
 
     @Id
-    @Column(name = "cod_resultdiagnostico", length = 7)
+    @Column(name = "cod_resultdiagnostico", length = 15)
     private String codResultadoDiagnostico;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_aluno", nullable = false)
     private Aluno aluno;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_diagnostico", nullable = false)
     private Diagnostico diagnostico;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_hipotese", nullable = false)
     private Hipotese hipotese;
+
+    public ResultadoDiagnostico() {}
 
     public ResultadoDiagnostico(String codResultadoDiagnostico, Aluno aluno,
                                 Diagnostico diagnostico, Hipotese hipotese) {

@@ -13,8 +13,8 @@ public class Diagnostico {
     @Column(name = "cod_diagnostico", length = 7)
     private String codDiagnostico;
 
-    @ManyToOne
-    @JoinColumn(name = "cod_turma", nullable = false) // FK para Turma
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cod_turma", nullable = false)
     private Turma turma;
 
     @Column(name = "bimestre_diagnostico", length = 1, nullable = false)
@@ -25,6 +25,8 @@ public class Diagnostico {
 
     @Column(name = "data_atualizacaodag", nullable = false)
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
+
+    public Diagnostico() {}
 
     public Diagnostico(String codDiagnostico, String bimestreDiagnostico, Turma turma,
                        LocalDateTime dataInclusao, LocalDateTime dataAtualizacao) {

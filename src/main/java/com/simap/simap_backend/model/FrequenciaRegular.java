@@ -11,11 +11,11 @@ public class FrequenciaRegular {
     @Column(name = "cod_freqregular", length = 15)
     private String codFreqRegular;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_aluno", nullable = false)
     private Aluno aluno;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cod_turma", nullable = false)
     private Turma turma;
 
@@ -72,11 +72,11 @@ public class FrequenciaRegular {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FrequenciaRegular that = (FrequenciaRegular) o;
-        return Objects.equals(codFreqRegular, that.codFreqRegular) && Objects.equals(aluno, that.aluno) && Objects.equals(turma, that.turma) && Objects.equals(bimestreR, that.bimestreR) && Objects.equals(frequenciaR, that.frequenciaR);
+        return Objects.equals(codFreqRegular, that.codFreqRegular);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codFreqRegular, aluno, turma, bimestreR, frequenciaR);
+        return Objects.hash(codFreqRegular);
     }
 }

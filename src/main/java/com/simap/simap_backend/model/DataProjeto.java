@@ -12,7 +12,7 @@ public class DataProjeto {
     @Column(name="cod_dataprojeto", length=15)
     private String codDataProjeto;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="cod_projeto", nullable=false)
     private ProjetoRecomposicao projeto;
 
@@ -56,11 +56,11 @@ public class DataProjeto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         DataProjeto that = (DataProjeto) o;
-        return Objects.equals(codDataProjeto, that.codDataProjeto) && Objects.equals(projeto, that.projeto) && Objects.equals(dataProjeto, that.dataProjeto);
+        return Objects.equals(codDataProjeto, that.codDataProjeto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codDataProjeto, projeto, dataProjeto);
+        return Objects.hash(codDataProjeto);
     }
 }

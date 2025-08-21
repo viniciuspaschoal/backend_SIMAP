@@ -11,12 +11,12 @@ public class FrequenciaProjeto {
     @EmbeddedId
     private FrequenciaProjetoId id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("codAluno")
     @JoinColumn(name = "cod_aluno", nullable = false)
     private Aluno aluno;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @MapsId("codDataProjeto")
     @JoinColumn(name = "cod_dataprojeto", nullable = false)
     private DataProjeto dataProjeto;
@@ -70,11 +70,11 @@ public class FrequenciaProjeto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FrequenciaProjeto that = (FrequenciaProjeto) o;
-        return Objects.equals(id, that.id) && Objects.equals(aluno, that.aluno) && Objects.equals(dataProjeto, that.dataProjeto) && Objects.equals(presente, that.presente);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, aluno, dataProjeto, presente);
+        return Objects.hash(id);
     }
 }

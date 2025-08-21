@@ -6,12 +6,16 @@ import jakarta.persistence.Embeddable;
 import java.io.Serializable;
 import java.util.Objects;
 
+// Classe que representa a chave primária composta da tabela frequencia_projeto.
+// Contém os campos (cod_aluno, cod_dataprojeto) que juntos formam a PK.
 @Embeddable
 public class FrequenciaProjetoId implements Serializable {
 
+    // Parte 1 da chave primária composta
     @Column(name = "cod_aluno", length = 7)
     private String codAluno;
 
+    // Parte 2 da chave primária composta
     @Column(name = "cod_dataprojeto", length = 15)
     private String codDataProjeto;
 

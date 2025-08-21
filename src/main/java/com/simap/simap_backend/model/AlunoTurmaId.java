@@ -1,36 +1,45 @@
 package com.simap.simap_backend.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Embeddable
+// Classe que representa a chave primária composta da tabela aluno_turma.
+// A PK é formada pelos campos (cod_aluno, cod_turma).
 public class AlunoTurmaId implements Serializable {
 
-    private Long codAluno;
-    private Long codTurma;
+    private static final long serialVersionUID = 1L;
+
+    // Parte 1 da chave primária composta
+    @Column(name = "cod_aluno", length = 7)
+    private String codAluno;
+
+    // Parte 2 da chave primária composta
+    @Column(name = "cod_turma", length = 7)
+    private String codTurma;
 
     public AlunoTurmaId() {}
 
-    public AlunoTurmaId(Long codAluno, Long codTurma) {
+    public AlunoTurmaId(String codAluno, String codTurma) {
         this.codAluno = codAluno;
         this.codTurma = codTurma;
     }
 
-    public Long getCodAluno() {
+    public String getCodAluno() {
         return codAluno;
     }
 
-    public void setCodAluno(Long codAluno) {
+    public void setCodAluno(String codAluno) {
         this.codAluno = codAluno;
     }
 
-    public Long getCodTurma() {
+    public String getCodTurma() {
         return codTurma;
     }
 
-    public void setCodTurma(Long codTurma) {
+    public void setCodTurma(String codTurma) {
         this.codTurma = codTurma;
     }
 
