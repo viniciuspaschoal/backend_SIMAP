@@ -13,10 +13,10 @@ public interface GrupoProjetoRepository extends JpaRepository<GrupoProjeto, Stri
     // ----------------------------
 
     // Buscar grupo pelo nome exato (ex: "ALF")
-    GrupoProjeto findByGrupoprojeto(String nome);
+    GrupoProjeto findByGrupoProjeto(String nome);
 
     // Buscar grupos que contenham parte do nome (ex: "MAT" → traz "MAT1", "MAT2")
-    List<GrupoProjeto> findByGrupoprojetoContainingIgnoreCase(String nome);
+    List<GrupoProjeto> findByGrupoProjetoContainingIgnoreCase(String nome);
 
     // Buscar por parte da descrição
     List<GrupoProjeto> findByDescricaoGrupoProjetoContainingIgnoreCase(String descricao);

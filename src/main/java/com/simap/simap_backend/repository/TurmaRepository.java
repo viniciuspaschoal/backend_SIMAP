@@ -20,10 +20,10 @@ public interface TurmaRepository extends JpaRepository<Turma, String> {
     // ----------------------------
 
     // Buscar turmas por escola (usa o relacionamento: turma.escola.codEscola)
-    List<Turma> findByEscola_CodTurma(String codEscola);
+    List<Turma> findByEscola_CodEscola(String codEscola);
 
     // Buscar por ano letivo
-    List<Turma> findByAnoLetivoR(Integer anoLetivo);
+    List<Turma> findByAnoLetivo(Integer anoLetivo);
 
     // Buscar por série
     List<Turma> findBySerie(String serie);
@@ -32,13 +32,14 @@ public interface TurmaRepository extends JpaRepository<Turma, String> {
     List<Turma> findByPeriodoRegular(String periodoRegular);
 
     // Combinações comuns: série + ano
-    List<Turma> findBySerieAndAnoLetivoR(String serie, Integer ano);
+    List<Turma> findBySerieAndAnoLetivo(String serie, Integer ano);
 
     //Identificar uma turma específica no ano (série + letra + ano)
-    Turma findBySerieAndTurmaAndAnoLetivo(String serie, String turma,  Integer ano);
+    // Corrigido para corresponder à propriedade 'anoletivo_r'
+    Turma findBySerieAndTurmaAndAnoLetivo(String serie, String turma, Integer ano);
 
     // Verificações rápidas
-    boolean existsBySerieAndTurmaAndAnoletivoR(String serie, String turma, Integer ano);
-    long countByEscola_CodEscolaAndAnoletivoR(String codEscola, Integer ano);
+    boolean existsBySerieAndTurmaAndAnoLetivo(String serie, String turma, Integer ano);
+    long countByEscola_CodEscolaAndAnoLetivo(String codEscola, Integer ano);
 
 }

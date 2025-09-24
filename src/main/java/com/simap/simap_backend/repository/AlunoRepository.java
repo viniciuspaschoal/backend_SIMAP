@@ -70,4 +70,22 @@ public interface AlunoRepository extends JpaRepository<Aluno, String> {
             "AND t.anoLetivo = 2025")
     String findPeriodoByRa(@Param("ra") String ra);
 
+    @Query("SELECT h.hipotese " +
+            "FROM ResultadoDiagnostico rd " +
+            "JOIN rd.aluno a " +
+            "JOIN rd.diagnostico d " +
+            "JOIN d.turma t " +
+            "JOIN rd.hipotese h " +
+            "WHERE a.ra = :ra AND d.bimestreDiagnostico = :bimestre AND t.anoLetivo = 2025")
+    String findResultadoBimByRa(@Param("ra") String ra, @Param("bimestre") Integer bimestre);
+
+    @Query(value = "SELECT fr.frequencia_r FROM aluno a " +
+            "INNER JOIN aluno_turma alt ON a.cod_aluno = alt.cod_aluno " +
+            "INNER JOIN turma t ON alt.cod_turma = t.cod_turma " +
+            "INNER JOIN frequencia_regular fr ON alt.cod_aluno = fr.cod_aluno AND alt.cod_turma = fr.cod_turma " +
+            "WHERE a.ra = :ra AND fr.bimestre_r = :bimestre AND t.anoletivo_r = 2025",
+            nativeQuery = true)
+    String findFrequenciaByRa(@Param("ra") String ra, @Param("bimestre") String bimestre);
+
+    
 }

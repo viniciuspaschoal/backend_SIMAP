@@ -23,7 +23,7 @@ public interface ProjetoRecomposicaoRepository extends JpaRepository<ProjetoReco
     List<ProjetoRecomposicao> findByPeriodoProjeto(String periodo);
 
     // Combinação: buscar projetos por professor + grupo
-    List<ProjetoRecomposicao> findByProfessor_CodProfessorAndGrupoProjeto_CodGrupoprojeto(
+    List<ProjetoRecomposicao> findByProfessor_CodProfessorAndGrupoProjeto_CodGrupoProjeto(
             String codProfessor, String codGrupo);
 
 }

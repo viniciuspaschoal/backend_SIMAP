@@ -33,7 +33,7 @@ public interface DataProjetoRepository extends JpaRepository<DataProjeto, String
     //FROM data_projeto
     //WHERE data_projeto BETWEEN ? AND ?;
 
-    @Query("SELECT dp FROM DataProjeto dp JOIN dp.projeto pr WHERE pr.codGrupoprojeto = :codGrupo AND dp.dataProjeto BETWEEN :startDate AND :endDate")
+    @Query("SELECT dp FROM DataProjeto dp JOIN dp.projeto pr WHERE pr.grupoProjeto.codGrupoProjeto = :codGrupo AND dp.dataProjeto BETWEEN :startDate AND :endDate")
     List<DataProjeto> findByGrupoProjetoAndDateRange(@Param("codGrupo") String codGrupo,
                                                      @Param("startDate")LocalDate startDate,
                                                      @Param("endDate") LocalDate endDate);

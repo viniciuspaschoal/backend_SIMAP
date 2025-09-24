@@ -19,7 +19,8 @@ public interface ProfessorRepository extends JpaRepository<Professor, String> {
     Professor findByEmailProfessor(String Email);
 
     //Buscar professores que lecionam em uma turma específica, usando o relacionamento com ProfessorTurma
-    Professor findByProfessorTurmas_Turma_CodTurma(String CodTurma);
+    Professor findByProfessorTurmas_Turma_CodTurma(String codTurma);
+
     // SELECT p.*
     // FROM professor p
     // JOIN professor_turma pt ON pt.cod_professor = p.cod_professor
@@ -27,5 +28,5 @@ public interface ProfessorRepository extends JpaRepository<Professor, String> {
     // WHERE t.cod_turma = '0001';
 
     //Buscar professor por código (ID)
-    Professor findByCocProfessor(String CodProfessor);
+    Professor findByCodProfessor(String CodProfessor);
 }
