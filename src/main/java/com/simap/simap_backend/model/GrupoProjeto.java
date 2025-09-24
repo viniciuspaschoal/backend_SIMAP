@@ -21,9 +21,7 @@ public class GrupoProjeto {
     @Column(name = "descricao_grupoprojeto", columnDefinition = "TEXT")
     private String descricaoGrupoProjeto;
 
-    //ToDo
-    // Será relacionado com ProjetoRecomposicao
-
+    public GrupoProjeto() {}
 
     public GrupoProjeto(String codGrupoProjeto, String grupoProjeto, String descricaoGrupoProjeto) {
         this.codGrupoProjeto = codGrupoProjeto;
@@ -58,13 +56,12 @@ public class GrupoProjeto {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GrupoProjeto that = (GrupoProjeto) o;
-        return Objects.equals(codGrupoProjeto, that.codGrupoProjeto) && Objects.equals(grupoProjeto, that.grupoProjeto) && Objects.equals(descricaoGrupoProjeto, that.descricaoGrupoProjeto);
+        if (!(o instanceof GrupoProjeto that)) return false;
+        return Objects.equals(codGrupoProjeto, that.codGrupoProjeto);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codGrupoProjeto, grupoProjeto, descricaoGrupoProjeto);
+        return Objects.hash(codGrupoProjeto);
     }
 }

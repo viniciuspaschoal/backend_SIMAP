@@ -1,12 +1,11 @@
 package com.simap.simap_backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "aluno")
@@ -16,9 +15,9 @@ public class Aluno {
     @Column(name = "cod_aluno", length = 7)
     private String codAluno; //chave primária
 
-    // Relacionamento com Declaração será feito depois
-    @Column(name = "cod_declaracao", length = 7)
-    private String codDeclaracao;
+    @OneToOne
+    @JoinColumn(name = "cod_declaracao", referencedColumnName = "cod_declaracao")
+    private Declaracao declaracao;
 
     @Column(name = "ra", length = 9, nullable = false, unique = true)
     private String ra;
@@ -32,11 +31,17 @@ public class Aluno {
     @Column(name = "observacao", columnDefinition = "TEXT")
     private String observacao;
 
-    public Aluno(String codAluno, String codDeclaracao,
+    @OneToMany(mappedBy = "aluno", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<AlunoTurma> alunoTurmas;
+
+    // Construtor vazio para o JPA
+    public Aluno() {}
+
+    public Aluno(String codAluno, Declaracao declaracao,
                  String ra, String nomeAluno, LocalDate dataNascimento,
                  String observacao) {
         this.codAluno = codAluno;
-        this.codDeclaracao = codDeclaracao;
+        this.declaracao = declaracao;
         this.ra = ra;
         this.nomeAluno = nomeAluno;
         this.dataNascimento = dataNascimento;
@@ -51,12 +56,12 @@ public class Aluno {
         this.codAluno = codAluno;
     }
 
-    public String getCodDeclaracao() {
-        return codDeclaracao;
+    public Declaracao getDeclaracao() {
+        return declaracao;
     }
 
-    public void setCodDeclaracao(String codDeclaracao) {
-        this.codDeclaracao = codDeclaracao;
+    public void setDeclaracao(Declaracao declaracao) {
+        this.declaracao = declaracao;
     }
 
     public String getRa() {
@@ -91,16 +96,24 @@ public class Aluno {
         this.observacao = observacao;
     }
 
+    public Set<AlunoTurma> getAlunoTurmas() {
+        return alunoTurmas;
+    }
+
+    public void setAlunoTurmas(Set<AlunoTurma> alunoTurmas) {
+        this.alunoTurmas = alunoTurmas;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Aluno aluno = (Aluno) o;
-        return Objects.equals(codAluno, aluno.codAluno) && Objects.equals(codDeclaracao, aluno.codDeclaracao) && Objects.equals(ra, aluno.ra) && Objects.equals(nomeAluno, aluno.nomeAluno) && Objects.equals(dataNascimento, aluno.dataNascimento) && Objects.equals(observacao, aluno.observacao);
+        return Objects.equals(codAluno, aluno.codAluno);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codAluno, codDeclaracao, ra, nomeAluno, dataNascimento, observacao);
+        return Objects.hash(codAluno);
     }
 }

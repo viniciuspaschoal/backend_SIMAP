@@ -21,6 +21,8 @@ public class Declaracao {
     @Column(name = "descricao_declaracao", length = 20)
     private String descricaoDeclaracao;
 
+    public Declaracao() {}
+
     public Declaracao(String codDeclaracao, String declaracao, String descricaoDeclaracao) {
         this.codDeclaracao = codDeclaracao;
         this.declaracao = declaracao;

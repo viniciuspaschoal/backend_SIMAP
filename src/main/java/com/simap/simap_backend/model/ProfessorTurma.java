@@ -21,6 +21,8 @@ public class ProfessorTurma {
     @JoinColumn(name = "cod_turma", nullable = false)
     private Turma turma;
 
+    public ProfessorTurma() {}
+
     public ProfessorTurma(ProfessorTurmaId id, Professor professor, Turma turma) {
         this.id = id;
         this.professor = professor;
@@ -54,13 +56,13 @@ public class ProfessorTurma {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ProfessorTurma that = (ProfessorTurma) o;
-        return Objects.equals(id, that.id) && Objects.equals(professor, that.professor) && Objects.equals(turma, that.turma);
+        if (!(o instanceof ProfessorTurma that)) return false;
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, professor, turma);
+        return Objects.hash(id);
     }
+
 }

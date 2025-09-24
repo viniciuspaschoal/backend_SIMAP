@@ -8,6 +8,7 @@ import java.util.Objects;
 
 // Classe que representa a chave primária composta da tabela aluno_turma.
 // A PK é formada pelos campos (cod_aluno, cod_turma).
+@Embeddable
 public class AlunoTurmaId implements Serializable {
 
     private static final long serialVersionUID = 1L;

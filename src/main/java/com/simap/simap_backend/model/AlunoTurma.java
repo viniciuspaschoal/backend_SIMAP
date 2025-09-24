@@ -2,11 +2,12 @@ package com.simap.simap_backend.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = "aluno_turma")
-public class AlunoTurma {
+public class AlunoTurma implements Serializable {
 
     @EmbeddedId
     private AlunoTurmaId id;
@@ -23,10 +24,11 @@ public class AlunoTurma {
 
     public AlunoTurma(){}
 
-    public AlunoTurma(AlunoTurmaId id, Aluno aluno, Turma turma) {
-        this.id = id;
+    // Construtor mais prático para criar uma nova relação AlunoTurma
+    public AlunoTurma(Aluno aluno, Turma turma) {
         this.aluno = aluno;
         this.turma = turma;
+        this.id = new AlunoTurmaId(aluno.getCodAluno(), turma.getCodTurma());
     }
 
     public AlunoTurmaId getId() {
@@ -55,13 +57,14 @@ public class AlunoTurma {
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AlunoTurma that = (AlunoTurma) o;
-        return Objects.equals(id, that.id) && Objects.equals(aluno, that.aluno) && Objects.equals(turma, that.turma);
+        return Objects.equals(id, that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, aluno, turma);
+        return Objects.hash(id);
     }
 }

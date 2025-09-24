@@ -1,11 +1,9 @@
 package com.simap.simap_backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "professor")
@@ -21,8 +19,10 @@ public class Professor {
     @Column(name = "email_professor", length = 100, nullable = false, unique = true)
     private String emailProfessor;
 
-    // Outra classe sera criada para representar a relação de professor com turma, relacionado com a tabela (professor_turma)
+    @OneToMany(mappedBy = "professor") // 'professor' é o nome do campo em ProfessorTurma
+    private Set<ProfessorTurma> professorTurmas;
 
+    public Professor() {}
 
     public Professor(String codProfessor, String nomeProfessor, String emailProfessor) {
         this.codProfessor = codProfessor;
@@ -54,16 +54,23 @@ public class Professor {
         this.emailProfessor = emailProfessor;
     }
 
+    public Set<ProfessorTurma> getProfessorTurmas() {
+        return professorTurmas;
+    }
+
+    public void setProfessorTurmas(Set<ProfessorTurma> professorTurmas) {
+        this.professorTurmas = professorTurmas;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Professor professor = (Professor) o;
-        return Objects.equals(codProfessor, professor.codProfessor) && Objects.equals(nomeProfessor, professor.nomeProfessor) && Objects.equals(emailProfessor, professor.emailProfessor);
+        if (!(o instanceof Professor that)) return false;
+        return Objects.equals(codProfessor, that.codProfessor);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codProfessor, nomeProfessor, emailProfessor);
+        return Objects.hash(codProfessor);
     }
 }

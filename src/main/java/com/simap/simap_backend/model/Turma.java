@@ -28,6 +28,8 @@ public class Turma {
     @Column(name = "anoletivo_r")
     private Integer anoLetivo;
 
+    public Turma() {}
+
     public Turma(String codTurma, Escola escola, String serie, String turma, String periodoRegular, Integer anoLetivo) {
         this.codTurma = codTurma;
         this.escola = escola;
@@ -88,13 +90,12 @@ public class Turma {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Turma turma1 = (Turma) o;
-        return Objects.equals(codTurma, turma1.codTurma) && Objects.equals(escola, turma1.escola) && Objects.equals(serie, turma1.serie) && Objects.equals(turma, turma1.turma) && Objects.equals(periodoRegular, turma1.periodoRegular) && Objects.equals(anoLetivo, turma1.anoLetivo);
+        if (!(o instanceof Turma that)) return false;
+        return Objects.equals(codTurma, that.codTurma);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(codTurma, escola, serie, turma, periodoRegular, anoLetivo);
+        return Objects.hash(codTurma);
     }
 }

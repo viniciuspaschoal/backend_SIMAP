@@ -44,6 +44,8 @@ public class Escola {
     @OneToMany(mappedBy = "escola")
     private List<Turma> turmas;
 
+    public Escola(){}
+
     public Escola(String codEscola, String nomeEscola, String telefone,
                   String endRua, String endBairro, String endNumero,
                   String endCidade, String endCep, String endEstado,
