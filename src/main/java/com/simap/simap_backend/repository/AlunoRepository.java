@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 import java.util.Optional;
 
-public interface AlunoRepository extends JpaRepository<Aluno, String> {
+public interface AlunoRepository extends JpaRepository<Aluno, String>, AlunoRepositoryCustom {
 
     //Buscar por nome exato
     List<Aluno> findByNomeAluno(String nome);
@@ -87,5 +87,6 @@ public interface AlunoRepository extends JpaRepository<Aluno, String> {
             nativeQuery = true)
     String findFrequenciaByRa(@Param("ra") String ra, @Param("bimestre") String bimestre);
 
-    
+
+
 }
