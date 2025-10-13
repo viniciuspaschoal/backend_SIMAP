@@ -3,6 +3,7 @@ package com.simap.simap_backend.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -26,15 +27,20 @@ public class Diagnostico {
     @Column(name = "data_atualizacaodag", nullable = false)
     private LocalDateTime dataAtualizacao = LocalDateTime.now();
 
+    @OneToMany(mappedBy = "diagnostico", fetch = FetchType.LAZY)
+    private List<ResultadoDiagnostico> resultadoDiagnosticos;
+
     public Diagnostico() {}
 
     public Diagnostico(String codDiagnostico, String bimestreDiagnostico, Turma turma,
-                       LocalDateTime dataInclusao, LocalDateTime dataAtualizacao) {
+                       LocalDateTime dataInclusao, LocalDateTime dataAtualizacao,
+                       List<ResultadoDiagnostico> resultadoDiagnosticos) {
         this.codDiagnostico = codDiagnostico;
         this.bimestreDiagnostico = bimestreDiagnostico;
         this.turma = turma;
         this.dataInclusao = dataInclusao;
         this.dataAtualizacao = dataAtualizacao;
+        this.resultadoDiagnosticos = resultadoDiagnosticos;
     }
 
     public String getCodDiagnostico() {
@@ -75,6 +81,14 @@ public class Diagnostico {
 
     public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
+    }
+
+    public List<ResultadoDiagnostico> getResultadoDiagnosticos() {
+        return resultadoDiagnosticos;
+    }
+
+    public void setResultadoDiagnosticos(List<ResultadoDiagnostico> resultadoDiagnosticos) {
+        this.resultadoDiagnosticos = resultadoDiagnosticos;
     }
 
     @Override
