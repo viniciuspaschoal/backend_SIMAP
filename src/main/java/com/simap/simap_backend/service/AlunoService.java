@@ -5,7 +5,6 @@ import com.simap.simap_backend.dto.BimestreDTO;
 import com.simap.simap_backend.mapper.AlunoMapper;
 import com.simap.simap_backend.model.Aluno;
 import com.simap.simap_backend.repository.AlunoRepository;
-import com.simap.simap_backend.repository.TurmaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -89,5 +88,7 @@ public class AlunoService {
                 null // numeroChamada ainda não vem do banco
         );
     }
+
+
 
 }
