@@ -2,6 +2,7 @@ package com.simap.simap_backend.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -28,15 +29,19 @@ public class Turma {
     @Column(name = "anoletivo_r")
     private Integer anoLetivo;
 
+    @OneToMany(mappedBy = "turma")
+    private List<Diagnostico> diagnosticos;
+
     public Turma() {}
 
-    public Turma(String codTurma, Escola escola, String serie, String turma, String periodoRegular, Integer anoLetivo) {
+    public Turma(String codTurma, Escola escola, String serie, String turma, String periodoRegular, Integer anoLetivo, List<Diagnostico> diagnosticos) {
         this.codTurma = codTurma;
         this.escola = escola;
         this.serie = serie;
         this.turma = turma;
         this.periodoRegular = periodoRegular;
         this.anoLetivo = anoLetivo;
+        this.diagnosticos = diagnosticos;
     }
 
     public String getCodTurma() {
@@ -85,6 +90,14 @@ public class Turma {
 
     public void setAnoLetivo(Integer anoLetivo) {
         this.anoLetivo = anoLetivo;
+    }
+
+    public List<Diagnostico> getDiagnosticos() {
+        return diagnosticos;
+    }
+
+    public void setDiagnosticos(List<Diagnostico> diagnosticos) {
+        this.diagnosticos = diagnosticos;
     }
 
     @Override
