@@ -11,6 +11,7 @@ public record ResultadoFiltrosDTO(
         String escola,
         String serie,
         String turma,
+        String nChamada,
         String hipoteseBimestre1,
         String hipoteseBimestre2,
         String hipoteseBimestre3,

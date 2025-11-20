@@ -26,6 +26,7 @@ public class AlunoRepositoryImpl implements AlunoRepositoryCustom {
                         "  e.nome_escola, " +
                         "  t.serie, " +
                         "  t.turma, " +
+                        "  at.nro_chamada, " +
                         "  STRING_AGG(DISTINCT CASE WHEN d.bimestre_diagnostico = '1' THEN h.hipotese END, ', ') AS b1_hipoteses, " +
                         "  STRING_AGG(DISTINCT CASE WHEN d.bimestre_diagnostico = '2' THEN h.hipotese END, ', ') AS b2_hipoteses, " +
                         "  STRING_AGG(DISTINCT CASE WHEN d.bimestre_diagnostico = '3' THEN h.hipotese END, ', ') AS b3_hipoteses, " +
@@ -74,7 +75,7 @@ public class AlunoRepositoryImpl implements AlunoRepositoryCustom {
             }
         }
 
-        sql.append(" GROUP BY a.cod_aluno, a.nome_aluno, a.ra, e.nome_escola, t.serie, t.turma ")
+        sql.append(" GROUP BY a.cod_aluno, a.nome_aluno, a.ra, e.nome_escola, t.serie, t.turma, at.nro_chamada ")
                 .append(" ORDER BY e.nome_escola, t.serie, t.turma, a.nome_aluno");
 
         Query query = em.createNativeQuery(sql.toString());

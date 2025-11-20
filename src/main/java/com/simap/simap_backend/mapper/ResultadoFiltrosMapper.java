@@ -16,6 +16,7 @@ public final class ResultadoFiltrosMapper{
                 safeToString(row.get("nome_escola")),
                 safeToString(row.get("serie")),
                 safeToString(row.get("turma")),
+                safeToString(row.get("nro_chamada")),
                 safeToString(row.get("b1_hipoteses")),
                 safeToString(row.get("b2_hipoteses")),
                 safeToString(row.get("b3_hipoteses")),
