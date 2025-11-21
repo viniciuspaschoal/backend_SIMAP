@@ -24,6 +24,7 @@ public class AlunoRepositoryImpl implements AlunoRepositoryCustom {
                         "  a.nome_aluno, " +
                         "  a.ra, " +
                         "  e.nome_escola, " +
+                        "  t.anoletivo_r, " +
                         "  t.serie, " +
                         "  t.turma, " +
                         "  at.nro_chamada, " +
@@ -52,6 +53,10 @@ public class AlunoRepositoryImpl implements AlunoRepositoryCustom {
             sql.append(" AND TRIM(t.turma) IN :turmas");
         }
 
+        if (filtro.anoLetivo() != null && !filtro.anoLetivo().isEmpty()) {
+            sql.append(" AND t.anoletivo_r IN :anos");
+        }
+
         // === FILTROS DINÂMICOS POR BIMESTRE ===
         if (filtro.diagnosticos() != null) {
             for (Map.Entry<String, List<String>> eDiag : filtro.diagnosticos().entrySet()) {
@@ -75,7 +80,7 @@ public class AlunoRepositoryImpl implements AlunoRepositoryCustom {
             }
         }
 
-        sql.append(" GROUP BY a.cod_aluno, a.nome_aluno, a.ra, e.nome_escola, t.serie, t.turma, at.nro_chamada ")
+        sql.append(" GROUP BY a.cod_aluno, a.nome_aluno, a.ra, e.nome_escola, t.anoletivo_r, t.serie, t.turma, at.nro_chamada ")
                 .append(" ORDER BY e.nome_escola, t.serie, t.turma, a.nome_aluno");
 
         Query query = em.createNativeQuery(sql.toString());
@@ -95,6 +100,11 @@ public class AlunoRepositoryImpl implements AlunoRepositoryCustom {
         if (filtro.turmas() != null && !filtro.turmas().isEmpty()) {
             query.setParameter("turmas",
                     filtro.turmas().stream().map(String::trim).toList());
+        }
+
+        if (filtro.anoLetivo() != null && !filtro.anoLetivo().isEmpty()){
+            query.setParameter("anos",
+                    filtro.anoLetivo());
         }
 
         if (filtro.diagnosticos() != null) {

@@ -9,6 +9,7 @@ public record ResultadoFiltrosDTO(
         String nomeAluno,
         String ra,
         String escola,
+        String anoLetivo,
         String serie,
         String turma,
         String nChamada,
