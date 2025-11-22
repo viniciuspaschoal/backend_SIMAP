@@ -14,14 +14,26 @@ public final class ResultadoFiltrosMapper{
                 safeToString(row.get("nome_aluno")),
                 safeToString(row.get("ra")),
                 safeToString(row.get("nome_escola")),
-                safeToString(row.get("ano_letivo")),
+                safeToString(row.get("anoletivo_r")),
                 safeToString(row.get("serie")),
                 safeToString(row.get("turma")),
                 safeToString(row.get("nro_chamada")),
+
                 safeToString(row.get("b1_hipoteses")),
+                safeToString(row.get("faltas_b1")),
+                safeToString(row.get("grupo_b1")),
+
                 safeToString(row.get("b2_hipoteses")),
+                safeToString(row.get("faltas_b2")),
+                safeToString(row.get("grupo_b2")),
+
                 safeToString(row.get("b3_hipoteses")),
-                safeToString(row.get("b4_hipoteses"))
+                safeToString(row.get("faltas_b3")),
+                safeToString(row.get("grupo_b3")),
+
+                safeToString(row.get("b4_hipoteses")),
+                safeToString(row.get("faltas_b4")),
+                safeToString(row.get("grupo_b4"))
         );
     }
 
