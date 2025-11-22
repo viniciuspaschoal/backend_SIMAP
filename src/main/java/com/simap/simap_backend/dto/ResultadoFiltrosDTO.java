@@ -14,7 +14,15 @@ public record ResultadoFiltrosDTO(
         String turma,
         String nChamada,
         String hipoteseBimestre1,
+        String frequenciaBimestre1,
+        String grupoProjetoBimestre1,
         String hipoteseBimestre2,
+        String frequenciaBimestre2,
+        String grupoProjetoBimestre2,
         String hipoteseBimestre3,
-        String hipoteseBimestre4
+        String frequenciaBimestre3,
+        String grupoProjetoBimestre3,
+        String hipoteseBimestre4,
+        String frequenciaBimestre4,
+        String grupoProjetoBimestre4
 ) {}
