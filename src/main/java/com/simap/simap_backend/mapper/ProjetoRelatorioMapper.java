@@ -116,6 +116,7 @@ public final class ProjetoRelatorioMapper {
 
         Integer numero = tryParseInt(primeira.get("num_projeto")); // número no projeto
         String nome = safe(primeira.get("nome_aluno"));
+        String ra = safe(primeira.get("ra"));
 
         String ano = safe(primeira.get("serie"));   // exemplo: "5"
         String turma = safe(primeira.get("turma")); // exemplo: "A"
@@ -140,6 +141,7 @@ public final class ProjetoRelatorioMapper {
         return new ProjetoAlunoDTO(
                 numero,
                 nome,
+                ra,
                 ano,
                 turma,
                 turno,

@@ -31,6 +31,7 @@ public class ProjetoRepositoryImpl implements ProjetoRepository {
                         // Aluno
                         " a.cod_aluno, " +
                         " a.nome_aluno, " +
+                        "a.ra, " +
                         " a.observacao AS observacao, " +
 
                         // Turma
