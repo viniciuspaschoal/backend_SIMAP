@@ -18,14 +18,23 @@ public class ProjetoController {
     private final ProjetoService projetoService;
 
     @Autowired
-    public ProjetoController(ProjetoService projetoService){
+    public ProjetoController(ProjetoService projetoService) {
         this.projetoService = projetoService;
     }
 
     @PostMapping("/filtrar")
-    public ResponseEntity<List<ProjetoRelatorioDTO>> filtrarProjetos(@RequestBody FiltroProjetoRequest filtro){
-        List<ProjetoRelatorioDTO> relatorios = projetoService.filtrarProjetos(filtro);
-
-        return ResponseEntity.ok(relatorios);
+    public ResponseEntity<?> filtrarProjetos(@RequestBody FiltroProjetoRequest filtro) {
+        try {
+            List<ProjetoRelatorioDTO> relatorios = projetoService.filtrarProjetos(filtro);
+            return ResponseEntity.ok(relatorios);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(
+                    Map.of("erro", e.getMessage())
+            );
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body(
+                    Map.of("erro", "Erro interno ao processar a solicitação")
+            );
+        }
     }
 }
