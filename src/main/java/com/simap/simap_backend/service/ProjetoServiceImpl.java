@@ -23,6 +23,14 @@ public class ProjetoServiceImpl implements ProjetoService {
     @Override
     public List<ProjetoRelatorioDTO> filtrarProjetos(FiltroProjetoRequest filtro){
 
+        if (filtro.anoLetivo() == null || filtro.anoLetivo().isEmpty()) {
+            throw new IllegalArgumentException("Selecione pelo menos um Ano Letivo");
+        }
+
+        if (filtro.escolas() == null || filtro.escolas().isEmpty()) {
+            throw new IllegalArgumentException("Selecione pelo menos uma Escola");
+        }
+
         //1) Buscar dados crus no banco
         List<Map<String, Object>> linhas = projetoRepository.filtrarProjetos(filtro);
 
